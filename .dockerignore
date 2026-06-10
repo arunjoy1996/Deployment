@@ -1,0 +1,7 @@
+model/MNIST
+model/rf_model.joblib
+__pycache__
+.git
+.gitignore
+README.md
+.vscode
