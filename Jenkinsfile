@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        
+        stage('Cleanup') {
+                    steps {
+                        cleanWs()   // ✅ correct place
+                    }
+                }
+
         stage('Build') {
             steps {
                 sh 'docker compose build'
