@@ -1,14 +1,22 @@
 pipeline {
     agent any
+    
+    options {
+        skipDefaultCheckout(false)
+    }
 
     stages {
         
         stage('Cleanup') {
-                    steps {
-                        cleanWs()   // ✅ correct place
-                    }
-                }
-
+            steps {
+                deleteDir()   // ✅ correct place
+            }
+        }
+        stage('Debug') {
+            steps {
+                sh 'ls -la'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'docker compose build'
