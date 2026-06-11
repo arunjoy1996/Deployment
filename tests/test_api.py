@@ -14,7 +14,7 @@ async def test_home():
 @pytest.mark.asyncio
 async def test_predict():
     transport = ASGITransport(app=app)
-    dummy = {"pixels": [0.0]*784}
+    dummy = {"pixels": [0.0]*64}  # 64 pixels for 8x8 image
 
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         response = await ac.post("/predict", json=dummy)
