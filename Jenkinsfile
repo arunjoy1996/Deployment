@@ -4,6 +4,10 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')  // Poll every 5 minutes (adjust as needed)
     }
+    
+    options {
+            cleanWs()
+        }
 
     stages {
 
