@@ -5,7 +5,13 @@ pipeline {
         pollSCM('H/5 * * * *')  // Poll every 5 minutes (adjust as needed)
     }
     stages {
-
+        
+        stage('Checkout') {
+                    steps {
+                        deleteDir()   // ✅ wipes workspace
+                        checkout scm
+                    }
+        }
         stage('Build') {
             steps {
                 sh 'docker-compose build'
