@@ -9,11 +9,11 @@ services:
     volumes:
       - ./model:/app/model
 
+  
   nginx:
     image: nginx:latest
     container_name: nginx
-    ports:
-      - "80:80"
+    network_mode: "host"
     volumes:
       - ./frontend:/usr/share/nginx/html
       - ./nginx:/etc/nginx/conf.d
