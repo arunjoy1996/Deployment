@@ -1,20 +1,14 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/5 * * * *')  // Poll every 5 minutes (adjust as needed)
+    options {
+        cleanWs()
     }
+
     stages {
-        
-        stage('Checkout') {
-                    steps {
-                        deleteDir()   // ✅ wipes workspace
-                        checkout scm
-                    }
-        }
         stage('Build') {
             steps {
-                sh 'docker-compose build'
+                sh 'docker compose build'
             }
         }
 
@@ -27,7 +21,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker compose up -d'
             }
         }
     }
