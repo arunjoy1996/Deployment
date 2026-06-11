@@ -1,22 +1,26 @@
 pipeline {
     agent any
-    
-    options {
-        skipDefaultCheckout(false)
-    }
 
     stages {
-        
+
         stage('Cleanup') {
             steps {
-                deleteDir()   // ✅ correct place
+                deleteDir()   // remove old files
             }
         }
+
+        stage('Checkout') {
+            steps {
+                checkout scm   // ✅ bring back repo
+            }
+        }
+
         stage('Debug') {
             steps {
-                sh 'ls -la'
+                sh 'ls -la'   // should show docker-compose.yml
             }
         }
+
         stage('Build') {
             steps {
                 sh 'docker compose build'
