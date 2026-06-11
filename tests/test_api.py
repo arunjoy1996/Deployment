@@ -1,16 +1,22 @@
 import pytest
 from httpx import AsyncClient
+from httpx import ASGITransport
 from api.main import app
 
 @pytest.mark.asyncio
 async def test_home():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        res = await ac.get("/")
-        assert res.status_code == 200
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+        response = await ac.get("/")
+    assert response.status_code == 200
+
 
 @pytest.mark.asyncio
 async def test_predict():
+    transport = ASGITransport(app=app)
     dummy = {"pixels": [0.0]*784}
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        res = await ac.post("/predict", json=dummy)
-        assert res.status_code == 200
+
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+        response = await ac.post("/predict", json=dummy)
+
+    assert response.status_code == 200
