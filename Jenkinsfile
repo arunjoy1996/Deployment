@@ -1,12 +1,11 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/5 * * * *')  // Poll every 5 minutes (adjust as needed)
+    }
+
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/your-repo/ml-deploy-project.git'
-            }
-        }
 
         stage('Build') {
             steps {
