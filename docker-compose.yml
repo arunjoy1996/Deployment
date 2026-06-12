@@ -14,7 +14,7 @@ services:
     container_name: nginx
     network_mode: "host"
     volumes:
-      - C:/Users/alexu/Documents/Squareroots.ai/Belden/Deployment project new/frontend:/usr/share/nginx/html
+      - ./frontend:/usr/share/nginx/html
       - ./nginx:/etc/nginx/conf.d
     depends_on:
       - backend
