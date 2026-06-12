@@ -3,13 +3,8 @@ import numpy as np
 from api.model_loader import model
 from api.schema import ImageInput
 import os
-from fastapi.staticfiles import StaticFiles
-
 
 app = FastAPI()
-
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
-
 
 
 @app.get("/")
