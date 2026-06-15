@@ -2,6 +2,5 @@ model/MNIST
 __pycache__
 .git
 .gitignore
-README.md
 .vscode
 venv/
