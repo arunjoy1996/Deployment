@@ -5,3 +5,4 @@ numpy
 pydantic
 pytest
 pytest-asyncio
+prometheus-client
