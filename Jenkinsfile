@@ -41,7 +41,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker compose up -d'
+                sh '''
+                echo "Stopping old containers..."
+                docker compose down --remove-orphans || true
+
+                echo "Starting fresh containers..."
+                docker compose up -d --build
+                '''
             }
         }
     }
